@@ -34,9 +34,7 @@ export class HomeComponent {
   }
 
   guardarCambios () {
-    console.log(this.cargando);
     this.cargando = true;
-    console.log(this.cargando);
     
     // VALIDACIÓN NOMBRE
     if ( !this.forma.controls['nombre'].valid ) {
@@ -63,15 +61,15 @@ export class HomeComponent {
       this.persona.nombre = this.forma.controls['nombre'].value;
       this.persona.apellido = this.forma.controls['apellido'].value;
       this.persona.fecha = this.forma.controls['fecha'].value;
-
-      console.log( this.persona );
       
       this._dLatam.crearPersona( this.persona ).subscribe( resp => {
         this.personas.push(resp);
         this.cargando = false;
       } );
 
-      this.forma.reset;
+      this.forma.controls['nombre'].reset();
+      this.forma.controls['apellido'].reset();
+      this.forma.controls['fecha'].reset();
     }
   }
 
